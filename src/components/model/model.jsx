@@ -24,7 +24,7 @@ const Model = () => {
         aria-controls={open ? "account-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
-        className="flex items-center gap-2 "
+        className="flex items-center gap-2 cursor-pointer"
       >
         <img src={profile} className="w-[32px] h-[32px]" />
         <section>
@@ -84,16 +84,18 @@ const Model = () => {
         </MenuItem>
         <hr className="h-[1px] w-[165px] border-[#EBEBEB] mb-2" />
         <MenuItem onClick={handleClose}>
-          <section className="flex flex-col mb-1">
-            <div className="text-[#313131] text-[13px] font-[400] leading-normal gap-3 flex items-center mb-3">
+          <section className="flex flex-col">
+            <div className="text-[#313131] text-[13px] font-[400] leading-normal gap-3 flex items-center ">
               <img src={seetingsIcon} />
               Profile settings
             </div>
-            <div className="text-[#313131] text-[13px] font-[400] leading-normal gap-3 flex items-center">
-              <img src={inf} />
-              Profile settings
-            </div>
           </section>
+        </MenuItem>
+        <MenuItem>
+          <div className="text-[#313131] text-[13px] font-[400] leading-normal gap-3 flex items-center">
+            <img src={inf} />
+            Profile settings
+          </div>
         </MenuItem>
         <hr className="h-[1px] w-[165px] border-[#EBEBEB] mb-2" />
         <MenuItem onClick={handleClose}>

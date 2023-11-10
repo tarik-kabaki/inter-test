@@ -27,7 +27,7 @@ const Catg = () => {
               <span className="mid:text-[12px] xsmall:text-[9px] font-[600] leading-normal text-[#616161]">
                 Category
               </span>
-              <button className="mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal text-[#2C8EFF]">
+              <button className="mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal text-[#2C8EFF] hover:text-blue-300 duration-200">
                 Add new +
               </button>
             </section>
@@ -58,7 +58,6 @@ const Catg = () => {
                 }}
               >
                 <MenuItem onClick={handleClose}>
-                  {" "}
                   <section className="flex items-center gap-2 w-[120px]">
                     <span className="text-[#313131] text-[12px] font-[600] leading-normal">
                       Exemple
@@ -75,7 +74,7 @@ const Catg = () => {
               <span className="mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal text-[#616161]">
                 Topic
               </span>
-              <button className="mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal text-[#2C8EFF]">
+              <button className="mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal text-[#2C8EFF] hover:text-blue-300 duration-200">
                 Add new +
               </button>
             </section>
