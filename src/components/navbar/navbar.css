@@ -1,0 +1,19 @@
+.nav-container {
+  @apply w-auto h-[70px] bg-[#FFFFFF] shadow-lg flex items-center;
+}
+
+.nav-wrapper {
+  @apply flex justify-between items-center p-4;
+}
+
+.nav-search {
+  @apply w-[392px] h-[32px] rounded-md bg-[#F6F6F6] relative flex items-center p-3 gap-3;
+}
+
+.nav-input {
+  @apply text-[#C6C6C6] font-[400] leading-normal focus:outline-none bg-inherit text-sm;
+}
+
+.nav-menu {
+  @apply text-[#B6B6B6] text-[14px] leading-normal font-[600];
+}
