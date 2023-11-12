@@ -11,7 +11,7 @@
 }
 
 .nav-input {
-  @apply text-[#C6C6C6] font-[400] leading-normal focus:outline-none bg-inherit text-sm;
+  @apply placeholder:text-[#C6C6C6] font-[400] leading-normal focus:outline-none bg-inherit text-sm;
 }
 
 .nav-menu {

@@ -16,9 +16,17 @@ import SpaceDashboard from "@mui/icons-material/SpaceDashboard";
 import Psychology from "@mui/icons-material/Psychology";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreHoriz from "@mui/icons-material/MoreHoriz";
-import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import More from "./more/more";
+import NotificationsNoneRounded from "@mui/icons-material/NotificationsNoneRounded";
+import Lang from "./lang/lang";
+import Noti from "./noti/noti";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { handleNav } from "../../redux/toolsSlice";
 
 const Navbar = () => {
+  const navLogs = useSelector((state) => state.tools.navLogs);
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [menu, setMenu] = useState(false);
 
@@ -34,6 +42,10 @@ const Navbar = () => {
     setMenu(!menu);
   };
 
+  const handleNavs = (item) => {
+    dispatch(handleNav({ link: item.link }));
+  };
+
   return (
     <div className="nav-container">
       <Container maxWidth="xl">
@@ -41,7 +53,7 @@ const Navbar = () => {
           <section>
             <img
               src={logo}
-              className="mid:w-[150px] mid:h-[45px] w-[100px] h-[30px]"
+              className="mid:w-[150px] mid:h-[45px] w-[80px] h-[25px]"
             />
           </section>
           <section className="mid:flex items-center gap-5 mid:visible hidden">
@@ -61,93 +73,23 @@ const Navbar = () => {
               </svg>
               <input placeholder="Quick search ..." className="nav-input" />
             </div>
-            <ul className="flex items-center gap-8 nav-menu">
-              <li>
-                <button>Dashboard</button>
-              </li>
-              <li className="text-[#2C8EFF]">
-                <button>Trainings</button>
-              </li>
-              <li>
-                <button>Users</button>
-              </li>
-              <li>
-                <button>
-                  More <KeyboardArrowDown />
-                </button>
-              </li>
-            </ul>
+            {navLogs?.map((item) => (
+              <ul className="flex items-center gap-8 nav-menu">
+                <li
+                  onClick={() => handleNavs(item)}
+                  className="
+                 cursor-pointer"
+                >
+                  <span className={`${item.active ? "text-blue-500" : ""}`}>
+                    {item.link === "More" ? <More /> : item.link}
+                  </span>
+                </li>
+              </ul>
+            ))}
           </section>
-          <section className="mid:flex items-center gap-7  hidden">
-            <button>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="15"
-                height="19"
-                viewBox="0 0 15 19"
-                fill="none"
-              >
-                <path
-                  d="M13.075 12.6562V12.677L13.0896 12.6916L14.95 14.552V15.4187H0.05V14.552L1.91036 12.6916L1.925 12.677V12.6562V7.96875C1.925 5.09878 3.45165 2.72334 6.10532 2.09239L6.14375 2.08326V2.04375V1.40625C6.14375 0.655739 6.74949 0.05 7.5 0.05C8.25051 0.05 8.85625 0.655739 8.85625 1.40625V2.04375V2.08329L8.89472 2.0924C11.5576 2.72333 13.075 5.10801 13.075 7.96875V12.6562ZM11.25 13.6438H11.3V13.5938V7.96875C11.3 6.79644 10.9431 5.72974 10.2886 4.95523C9.63337 4.17991 8.68189 3.7 7.5 3.7C6.31811 3.7 5.36663 4.17991 4.71142 4.95523C4.05689 5.72974 3.7 6.79644 3.7 7.96875V13.5938V13.6438H3.75H11.25ZM9.32432 16.4562C9.29759 17.437 8.48692 18.2313 7.5 18.2313C6.51308 18.2313 5.70241 17.437 5.67568 16.4562H9.32432Z"
-                  fill="#A4A4A4"
-                  stroke="white"
-                  stroke-width="0.1"
-                />
-              </svg>
-            </button>
-
-            <div>
-              <img
-                className=" cursor-pointer"
-                src={english}
-                id="basic-button"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-              />
-
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-              >
-                <MenuItem onClick={handleClose} className="gap-2">
-                  <img src={english} />
-                  <span className="text-[#313131] text-[12px] leading-normal font-[400]">
-                    English (US)
-                  </span>
-                </MenuItem>
-                <MenuItem onClick={handleClose} className="gap-2">
-                  <img src={france} />
-                  <span className="text-[#ADADAD] text-[12px] leading-normal font-[400]">
-                    Français (FR)
-                  </span>
-                </MenuItem>
-                <MenuItem onClick={handleClose} className="gap-2">
-                  <img src={nederlands} />
-                  <span className="text-[#ADADAD] text-[12px] leading-normal font-[400]">
-                    Nederlands (NL)
-                  </span>
-                </MenuItem>
-                <MenuItem onClick={handleClose} className="gap-2">
-                  <img src={spain} />
-                  <span className="text-[#ADADAD] text-[12px] leading-normal font-[400]">
-                    Español (ES)
-                  </span>
-                </MenuItem>
-                <MenuItem onClick={handleClose} className="gap-2">
-                  <img src={germany} />
-                  <span className="text-[#ADADAD] text-[12px] leading-normal font-[400]">
-                    Deutsch (DE)
-                  </span>
-                </MenuItem>
-              </Menu>
-            </div>
+          <section className="mid:flex  items-center gap-6  hidden">
+            <Noti />
+            <Lang />
             <Model />
           </section>
 
@@ -187,102 +129,37 @@ const Navbar = () => {
                   <input placeholder="Quick search ..." className="nav-input" />
                 </div>
               </div>
-              <ul className="text-[#3a3a3a] text-[24px] leading-normal font-[700] p-10">
-                <li className="mb-10">
-                  <button className="flex items-center gap-3">
-                    <SpaceDashboard style={{ fontSize: 30 }} />
-                    Dashboard
-                  </button>
-                </li>
-                <li className="text-[#2C8EFF] mb-10">
-                  <button className="flex items-center gap-3">
-                    <Psychology style={{ fontSize: 30 }} />
-                    Trainings
-                  </button>
-                </li>
-                <li className="mb-10">
-                  <button className="flex items-center gap-3">
-                    <AccountCircle style={{ fontSize: 30 }} />
-                    Users
-                  </button>
-                </li>
-                <li className="">
-                  <button className="flex items-center gap-3">
-                    <MoreHoriz style={{ fontSize: 30 }} />
-                    More
-                  </button>
-                </li>
-              </ul>
+
+              {navLogs?.map((item) => (
+                <ul className="text-[#3a3a3a] text-[24px] leading-normal font-[700] p-10">
+                  <li
+                    onClick={() => handleNavs(item)}
+                    className="
+                 cursor-pointer "
+                  >
+                    <span
+                      className={`${
+                        item.active
+                          ? "text-blue-500 flex items-center gap-3"
+                          : "flex items-center gap-3"
+                      }`}
+                    >
+                      {item.link === "More" ? <More /> : item.link}
+                    </span>
+                  </li>
+                </ul>
+              ))}
 
               <section className="flex items-center gap-7 p-5">
                 <Model />
 
-                <div>
-                  <img
-                    className=" cursor-pointer"
-                    src={english}
-                    id="basic-button"
-                    aria-controls={open ? "basic-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={handleClick}
+                <Lang />
+                <button className="flex items-center ">
+                  <NotificationsNoneRounded
+                    className="text-[#888888] hover:text-orange-500"
+                    style={{ fontSize: "24px" }}
                   />
-
-                  <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                      "aria-labelledby": "basic-button",
-                    }}
-                  >
-                    <MenuItem onClick={handleClose} className="gap-2">
-                      <img src={english} />
-                      <span className="text-[#313131] text-[12px] leading-normal font-[400]">
-                        English (US)
-                      </span>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose} className="gap-2">
-                      <img src={france} />
-                      <span className="text-[#ADADAD] text-[12px] leading-normal font-[400]">
-                        Français (FR)
-                      </span>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose} className="gap-2">
-                      <img src={nederlands} />
-                      <span className="text-[#ADADAD] text-[12px] leading-normal font-[400]">
-                        Nederlands (NL)
-                      </span>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose} className="gap-2">
-                      <img src={spain} />
-                      <span className="text-[#ADADAD] text-[12px] leading-normal font-[400]">
-                        Español (ES)
-                      </span>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose} className="gap-2">
-                      <img src={germany} />
-                      <span className="text-[#ADADAD] text-[12px] leading-normal font-[400]">
-                        Deutsch (DE)
-                      </span>
-                    </MenuItem>
-                  </Menu>
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="15"
-                  height="19"
-                  viewBox="0 0 15 19"
-                  fill="none"
-                >
-                  <path
-                    d="M13.075 12.6562V12.677L13.0896 12.6916L14.95 14.552V15.4187H0.05V14.552L1.91036 12.6916L1.925 12.677V12.6562V7.96875C1.925 5.09878 3.45165 2.72334 6.10532 2.09239L6.14375 2.08326V2.04375V1.40625C6.14375 0.655739 6.74949 0.05 7.5 0.05C8.25051 0.05 8.85625 0.655739 8.85625 1.40625V2.04375V2.08329L8.89472 2.0924C11.5576 2.72333 13.075 5.10801 13.075 7.96875V12.6562ZM11.25 13.6438H11.3V13.5938V7.96875C11.3 6.79644 10.9431 5.72974 10.2886 4.95523C9.63337 4.17991 8.68189 3.7 7.5 3.7C6.31811 3.7 5.36663 4.17991 4.71142 4.95523C4.05689 5.72974 3.7 6.79644 3.7 7.96875V13.5938V13.6438H3.75H11.25ZM9.32432 16.4562C9.29759 17.437 8.48692 18.2313 7.5 18.2313C6.51308 18.2313 5.70241 17.437 5.67568 16.4562H9.32432Z"
-                    fill="#A4A4A4"
-                    stroke="white"
-                    stroke-width="0.1"
-                  />
-                </svg>
+                </button>
               </section>
             </section>
           </div>

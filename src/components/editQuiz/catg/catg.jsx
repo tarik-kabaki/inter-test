@@ -336,7 +336,7 @@ const Catg = () => {
             </section>
             <textarea
               placeholder="Type here.."
-              className="w-full h-[102px] rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px] text-[12px] italic font-[400] leading-normal p-2 focus:outline-none"
+              className="w-full h-[102px] max-h-[102px] rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px] text-[12px] italic font-[400] leading-normal p-2 focus:outline-none"
             ></textarea>
           </div>
         </section>

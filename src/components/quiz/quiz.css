@@ -1,0 +1,8 @@
+.checkbox:checked {
+  background-image: url("./assets/checkedbox.png");
+}
+.checkbox:after {
+  width: 400px;
+  height: 400px;
+  background-color: black;
+}
