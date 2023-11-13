@@ -7,8 +7,20 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import "../catg/catg.css";
 
 const Catg = () => {
+  const [valid, setValid] = React.useState();
+  const [topic, setTopic] = React.useState();
+  const [category, setCategory] = React.useState();
+  const [depart, setDepart] = React.useState();
+  const [func, setFunc] = React.useState();
+  const [assing, setAssing] = React.useState();
+  const [trainigns, setTrainigns] = React.useState(null);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -18,8 +30,21 @@ const Catg = () => {
     setAnchorEl(null);
   };
 
+  const handleChange = (event) => {
+    setValid(event.target.value);
+    setTopic(event.target.value);
+    setCategory(event.target.value);
+    setAssing(event.target.value);
+    setDepart(event.target.value);
+    setFunc(event.target.value);
+  };
+
+  const handleTrainigns = (event) => {
+    setTrainigns(event.target.value);
+  };
+
   return (
-    <div className="mid:w-[532px] xsmall:w-[330px] mobile:w-[450px]  h-[311px] rounded-md shadow-md bg-[#FFFFFF] mid:p-6 p-5 mid:mb-0 mb-5">
+    <div className="mid:w-[532px] xsmall:w-[330px] mobile:w-[450px] h-[311px] rounded-md shadow-md bg-[#FFFFFF] mid:p-6 p-5 mid:mb-0 mb-5">
       <section className="flex gap-3 mb-3">
         <section className="flex">
           <div className="mid:w-[156px] mobile:w-[120px] xsmall:w-[90px] h-[61px]">
@@ -31,41 +56,37 @@ const Catg = () => {
                 Add new +
               </button>
             </section>
-
-            <div className="Model-List">
-              <button
-                className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px]"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-              >
-                <section className="flex items-center gap-2">
-                  <img src={security} className="w-[18px] h-[18px]" />
-                  <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
-                    Safety
-                  </span>
-                </section>
-                <img src={Arrow} />
-              </button>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
+            <FormControl>
+              <Select
+                defaultValue={10}
+                value={category}
+                onChange={handleChange}
+                style={{
+                  fontSize: "12px",
+                  color: "#313131",
+                  fontWeight: "600",
+                  lineHeight: "normal",
                 }}
+                className="cat"
               >
-                <MenuItem onClick={handleClose}>
-                  <section className="flex items-center gap-2 w-[120px]">
-                    <span className="text-[#313131] text-[12px] font-[600] leading-normal">
-                      Exemple
+                <MenuItem value={10} className="input-text">
+                  <section className="flex items-center gap-2">
+                    <img src={security} className="w-[16px] h-[16px]" />
+                    <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                      Safety
                     </span>
                   </section>
                 </MenuItem>
-              </Menu>
-            </div>
+                <MenuItem value={20} className="input-text">
+                  <section className="flex items-center gap-2">
+                    <img src={security} className="w-[18px] h-[18px]" />
+                    <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                      Safety 2
+                    </span>
+                  </section>
+                </MenuItem>
+              </Select>
+            </FormControl>
           </div>
         </section>
         <section className="flex">
@@ -78,41 +99,38 @@ const Catg = () => {
                 Add new +
               </button>
             </section>
-            <div className="Model-List">
-              <button
-                className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px]"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-              >
-                <section className="flex items-center gap-2">
-                  <img src={blueicon} className="w-[18px] h-[18px]" />
-                  <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
-                    VCA
-                  </span>
-                </section>
-                <img src={Arrow} />
-              </button>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
+
+            <FormControl>
+              <Select
+                defaultValue={10}
+                value={topic}
+                onChange={handleChange}
+                style={{
+                  fontSize: "12px",
+                  color: "#313131",
+                  fontWeight: "600",
+                  lineHeight: "normal",
                 }}
+                className="topi"
               >
-                <MenuItem onClick={handleClose}>
-                  {" "}
-                  <section className="flex items-center gap-2 w-[120px]">
-                    <span className="text-[#313131] text-[12px] font-[600] leading-normal">
-                      Exemple
+                <MenuItem value={10} className="input-text">
+                  <section className="flex items-center gap-2">
+                    <img src={blueicon} className="w-[18px] h-[18px]" />
+                    <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                      VCA
                     </span>
                   </section>
                 </MenuItem>
-              </Menu>
-            </div>
+                <MenuItem value={20} className="input-text">
+                  <section className="flex items-center gap-2">
+                    <img src={blueicon} className="w-[18px] h-[18px]" />
+                    <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                      VCA 2
+                    </span>
+                  </section>
+                </MenuItem>
+              </Select>
+            </FormControl>
           </div>
         </section>
         <section className="flex">
@@ -122,40 +140,30 @@ const Catg = () => {
                 Valid For
               </span>
             </section>
-            <div className="Model-List">
-              <button
-                className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px]"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-              >
-                <section className="flex items-center gap-2">
-                  <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
-                    year 1
-                  </span>
-                </section>
-                <img src={Arrow} />
-              </button>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
+            <FormControl>
+              <Select
+                defaultValue={10}
+                value={valid}
+                onChange={handleChange}
+                style={{
+                  fontSize: "12px",
+                  color: "#313131",
+                  fontWeight: "600",
+                  lineHeight: "normal",
                 }}
+                className="vali"
               >
-                <MenuItem onClick={handleClose}>
-                  {" "}
-                  <section className="flex items-center gap-2 w-[120px]">
-                    <span className="text-[#313131] text-[12px] font-[600] leading-normal">
-                      Exemple
-                    </span>
-                  </section>
+                <MenuItem value={10} className="input-text">
+                  1 year
                 </MenuItem>
-              </Menu>
-            </div>
+                <MenuItem value={20} className="input-text">
+                  2 year
+                </MenuItem>
+                <MenuItem value={30} className="input-text">
+                  3 year
+                </MenuItem>
+              </Select>
+            </FormControl>
           </div>
         </section>
       </section>
@@ -168,21 +176,67 @@ const Catg = () => {
               </span>
             </section>
 
-            <div className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px] ">
-              <span className="flex items-center gap-2">
-                <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
-                  Working at height
+            {trainigns ? (
+              <div className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px] ">
+                <span className="flex items-center gap-2">
+                  <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                    {trainigns}
+                  </span>
                 </span>
-              </span>
-              <section className="flex items-center gap-3 ">
-                <img src={blueicon} />
-
-                <button>
-                  {" "}
-                  <img src={Vector} />
-                </button>
-              </section>
-            </div>
+                <section className="flex items-center gap-3 ">
+                  <img src={blueicon} />
+                  <button
+                    onClick={() => setTrainigns(null)}
+                    className=" hover:opacity-50 duration-200"
+                  >
+                    <img src={Vector} />
+                  </button>
+                </section>
+              </div>
+            ) : (
+              <FormControl>
+                <Select
+                  defaultValue={"Working at height"}
+                  value={trainigns}
+                  onChange={handleTrainigns}
+                  style={{
+                    fontSize: "12px",
+                    color: "#313131",
+                    fontWeight: "600",
+                    lineHeight: "normal",
+                  }}
+                  className="train"
+                >
+                  <MenuItem value={"Working at height"} className="input-text">
+                    <div className="w-full h-[36px] flex items-center justify-between rounded-md  ">
+                      <span className="flex items-center gap-2">
+                        <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                          Working at height
+                        </span>
+                      </span>
+                      <section className="flex items-center gap-3 ">
+                        <img src={blueicon} />
+                      </section>
+                    </div>
+                  </MenuItem>
+                  <MenuItem
+                    value={"Working at height 2"}
+                    className="input-text"
+                  >
+                    <div className="w-full h-[36px] flex items-center justify-between  rounded-md  ">
+                      <span className="flex items-center gap-2">
+                        <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                          Working at height 2
+                        </span>
+                      </span>
+                      <section className="flex items-center gap-3 ">
+                        <img src={blueicon} />
+                      </section>
+                    </div>
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            )}
           </div>
         </section>
         <section className="flex">
@@ -192,40 +246,43 @@ const Catg = () => {
                 Assign To
               </span>
             </section>
-            <div className="Model-List">
-              <button
-                className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px]"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-              >
-                <section className="flex items-center gap-2">
-                  <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
-                    Internal workers
-                  </span>
-                </section>
-                <img src={Arrow} />
-              </button>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
+
+            <FormControl>
+              <Select
+                defaultValue={10}
+                value={assing}
+                onChange={handleChange}
+                style={{
+                  fontSize: "12px",
+                  color: "#313131",
+                  fontWeight: "600",
+                  lineHeight: "normal",
                 }}
+                className="ass"
               >
-                <MenuItem onClick={handleClose}>
-                  {" "}
-                  <section className="flex items-center gap-2 w-[120px]">
-                    <span className="text-[#313131] text-[12px] font-[600] leading-normal">
-                      Exemple
+                <MenuItem value={10} className="input-text">
+                  <section className="flex items-center gap-2">
+                    <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                      Internal workers
                     </span>
                   </section>
                 </MenuItem>
-              </Menu>
-            </div>
+                <MenuItem value={20} className="input-text">
+                  <section className="flex items-center gap-2">
+                    <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                      Internal workers 2
+                    </span>
+                  </section>
+                </MenuItem>
+                <MenuItem value={30} className="input-text">
+                  <section className="flex items-center gap-2">
+                    <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                      Internal workers 3
+                    </span>
+                  </section>
+                </MenuItem>
+              </Select>
+            </FormControl>
           </div>
         </section>
       </div>
@@ -241,40 +298,35 @@ const Catg = () => {
                   Optional
                 </button>
               </section>
-              <div className="Model-List">
-                <button
-                  className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px]"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                >
-                  <section className="flex items-center gap-2">
-                    <span className="text-[#888888] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[400] leading-normal italic">
-                      Internal workers
-                    </span>
-                  </section>
-                  <img src={Arrow} />
-                </button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
+              <FormControl>
+                <Select
+                  defaultValue={10}
+                  value={depart}
+                  onChange={handleChange}
+                  style={{
+                    fontSize: "12px",
+                    color: "#313131",
+                    fontWeight: "600",
+                    lineHeight: "normal",
                   }}
+                  className="dept"
                 >
-                  <MenuItem onClick={handleClose}>
-                    {" "}
-                    <section className="flex items-center gap-2 w-[120px]">
-                      <span className="text-[#313131] text-[12px] font-[600] leading-normal">
-                        Exemple
+                  <MenuItem value={10} className="input-text">
+                    <section className="flex items-center gap-2">
+                      <span className="text-[#888888] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[400] leading-normal italic">
+                        Internal workers
                       </span>
                     </section>
                   </MenuItem>
-                </Menu>
-              </div>
+                  <MenuItem value={20} className="input-text">
+                    <section className="flex items-center gap-2">
+                      <span className="text-[#888888] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[400] leading-normal italic">
+                        Internal workers 2
+                      </span>
+                    </section>
+                  </MenuItem>
+                </Select>
+              </FormControl>
             </button>
           </section>
           <section className="flex">
@@ -287,40 +339,36 @@ const Catg = () => {
                   Optional
                 </button>
               </section>
-              <div className="Model-List">
-                <button
-                  className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px]"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                >
-                  <section className="flex items-center gap-2">
-                    <span className="text-[#888888] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[400] leading-normal italic">
-                      Select departments
-                    </span>
-                  </section>
-                  <img src={Arrow} />
-                </button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
+
+              <FormControl>
+                <Select
+                  defaultValue={10}
+                  value={func}
+                  onChange={handleChange}
+                  style={{
+                    fontSize: "12px",
+                    color: "#313131",
+                    fontWeight: "600",
+                    lineHeight: "normal",
                   }}
+                  className="dept"
                 >
-                  <MenuItem onClick={handleClose}>
-                    {" "}
-                    <section className="flex items-center gap-2 w-[120px]">
-                      <span className="text-[#313131] text-[12px] font-[600] leading-normal">
-                        Exemple
+                  <MenuItem value={10} className="input-text">
+                    <section className="flex items-center gap-2">
+                      <span className="text-[#888888] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[400] leading-normal italic">
+                        Select departments
                       </span>
                     </section>
                   </MenuItem>
-                </Menu>
-              </div>
+                  <MenuItem value={20} className="input-text">
+                    <section className="flex items-center gap-2">
+                      <span className="text-[#888888] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[400] leading-normal italic">
+                        Select departments 2
+                      </span>
+                    </section>
+                  </MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </section>
         </section>
@@ -346,3 +394,17 @@ const Catg = () => {
 };
 
 export default Catg;
+
+/*     <div className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px] ">
+              <span className="flex items-center gap-2">
+                <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
+                  Working at height
+                </span>
+              </span>
+              <section className="flex items-center gap-3 ">
+                <img src={blueicon} />
+                <button>
+                  <img src={Vector} />
+                </button>
+              </section>
+            </div> */

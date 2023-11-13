@@ -4,6 +4,7 @@ import france from "../../src/components/navbar/assets/france.png";
 import germany from "../../src/components/navbar/assets/germany.png";
 import nederlands from "../../src/components/navbar/assets/nederlands.png";
 import spain from "../../src/components/navbar/assets/spain.png";
+import { SignalCellularNull } from "@mui/icons-material";
 
 export const quizSlice = createSlice({
   name: "quiz",
@@ -12,14 +13,14 @@ export const quizSlice = createSlice({
       {
         id: 1,
         check: false,
-        uncheck: false,
+        uncheck: true,
         quiz: "Dust-filter respirators may be used for continuous protection while silica sand is used as the blasting abrasive.",
         image: null,
       },
       {
         id: 2,
         check: false,
-        uncheck: false,
+        uncheck: true,
         quiz: "Dust-filter respirators may be used for continuous protection while silica sand is used as the blasting abrasive.",
         image: null,
       },
@@ -80,14 +81,14 @@ export const quizSlice = createSlice({
       const currComponent = state.quizs.find(
         (item) => item.id === action.payload.id
       );
-      currComponent.check = !currComponent.check;
-    },
 
-    handUncheck: (state, action) => {
-      const currComponent = state.quizs.find(
-        (item) => item.id === action.payload.id
-      );
-      currComponent.uncheck = !currComponent.uncheck;
+      if (action.payload.check === false) {
+        currComponent.check = true;
+        currComponent.uncheck = false;
+      } else {
+        currComponent.uncheck = true;
+        currComponent.check = false;
+      }
     },
 
     handlePickLangs: (state, action) => {
@@ -95,6 +96,12 @@ export const quizSlice = createSlice({
       removePicked.picked = !removePicked.picked;
       const changeV = state.langs.find((item) => item.id === action.payload);
       changeV.picked = !changeV.picked;
+    },
+
+    rmvImage: (state, action) => {
+      const currComponent = state.quizs.find((i) => i.id === action.payload.id);
+
+      currComponent.image = null;
     },
   },
 });
@@ -104,7 +111,7 @@ export const {
   addQuiz,
   rmQuiz,
   handCheck,
-  handUncheck,
   handlePickLangs,
+  rmvImage,
 } = quizSlice.actions;
 export default quizSlice.reducer;

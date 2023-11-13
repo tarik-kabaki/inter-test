@@ -81,7 +81,9 @@ const Lang = () => {
           <MenuItem onClick={handleClose}>
             <div
               onClick={() => handlePickLang(item.id)}
-              className="text-[#313131] text-[12px] leading-normal font-[400] flex items-center gap-2"
+              className={`${
+                item.picked ? "text-[#313131]" : "text-[#ADADAD]"
+              } text-[12px] leading-normal font-[400] flex items-center gap-2 `}
             >
               <img src={item.image} className="w-5 h-5" />
               <span>{item.lan}</span>

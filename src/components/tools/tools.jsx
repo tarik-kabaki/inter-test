@@ -56,7 +56,7 @@ const Tools = () => {
                 <section className="w-[153px] h-[110px] flex items-center flex-col">
                   <img src={item.image} className="w-[32px] h-[35px] mb-2" />
                   <span className="text-[#313131] text-[12px] font-[600] leading-normal mb-5">
-                    Random questions
+                    {item.name}
                   </span>
 
                   {item.type === "check" ? (

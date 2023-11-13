@@ -14,29 +14,25 @@ import {
   imageDispatch,
   removeQuiz,
   rmQuiz,
+  rmvImage,
 } from "../../redux/quizSlice";
-import { TextareaAutosize } from "@mui/material";
+import { NavItem } from "react-bootstrap";
 
 const Quiz = () => {
   const quizArray = useSelector((state) => state.quiz.quizs);
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [id, setId] = useState(null);
-  const [check, setCheck] = useState(false);
-  const [uncheck, setUncheck] = useState(false);
-  const [input, setInput] = useState("");
-  const inputRef = useRef(null);
+  const [err, setRrr] = useState(null);
 
   useEffect(() => {
-    inputRef.current.style.height = "auto";
-    inputRef.current.style.height = inputRef.current.scrollHeight + "px";
-  }, [input]);
-
-  useEffect(() => {
-    if (image) {
+    if (image?.type === "image/png" || image?.type === "image/jpeg") {
       dispatch(imageDispatch({ image: image, id: id }));
       setImage(null);
       setId(null);
+      setRrr(null);
+    } else if (image) {
+      setRrr("Only JPG, PNG files are allowed");
     }
   }, [image]);
 
@@ -48,12 +44,16 @@ const Quiz = () => {
     noClick: true,
   });
 
+  console.log(err);
+
   const handleAddQuiz = () => {
     dispatch(
       addQuiz({
         id: quizArray.length < 1 ? 1 : quizArray[quizArray.length - 1].id + 1,
 
         quiz: "Dust-filter respirators may be used for continuous protection while silica sand is used as the blasting abrasive.",
+        check: false,
+        uncheck: true,
         image: null,
       })
     );
@@ -63,12 +63,16 @@ const Quiz = () => {
     dispatch(rmQuiz(id));
   };
 
-  const handleCheck = (id) => {
-    dispatch(handCheck({ id: id }));
+  const handleCheck = (data) => {
+    dispatch(handCheck({ id: id, ...data }));
   };
 
-  const handleUnCheck = (id) => {
-    dispatch(handUncheck({ id: id }));
+  const handleUnCheck = (data) => {
+    dispatch(handCheck({ id: id, ...data }));
+  };
+
+  const hadleRemoveImage = (item) => {
+    dispatch(rmvImage({ id: item.id }));
   };
 
   return (
@@ -102,13 +106,9 @@ const Quiz = () => {
                 </button>
               </div>
               <div className="p-3 flex items-center w-full mid:h-auto rounded-md flex-shrink-0 border-[1px] border-[#EBEBEB] bg-[#FFF] mb-3">
-                <textarea
-                  ref={inputRef}
-                  onChange={(e) => setInput(e.target.value)}
-                  className="text-[12px] leading-normal font-[600] text-[#616161] w-full focus:outline-none h-auto resize-none placeholder:text-[#616161]"
-                  placeholder={item.quiz}
-                  rows={1}
-                />
+                <span className="text-[12px] leading-normal font-[600] text-[#616161] w-full h-auto ">
+                  {item.quiz}
+                </span>
               </div>
               <div className="w-full h-[37px] rounded-md flex-shrink-0 border-[1px] border-[#EBEBEB] bg-[#FFF] mb-3 flex items-center">
                 <section className="p-3 flex items-center justify-between w-full">
@@ -116,7 +116,7 @@ const Quiz = () => {
                     True
                   </span>
                   <div className="flex items-center gap-2">
-                    <button onClick={() => handleCheck(item.id)}>
+                    <button onClick={() => handleCheck(item)}>
                       {item.check ? (
                         <img src={checkedbox} />
                       ) : (
@@ -137,7 +137,7 @@ const Quiz = () => {
                     False
                   </span>
                   <div className="flex items-center gap-2">
-                    <button onClick={() => handleUnCheck(item.id)}>
+                    <button onClick={() => handleUnCheck(item)}>
                       {item.uncheck ? (
                         <img src={checkedbox} />
                       ) : (
@@ -145,7 +145,7 @@ const Quiz = () => {
                       )}
                     </button>
 
-                    <label className=" cursor-pointer ">
+                    <label className=" cursor-pointer">
                       <img src={cloud} className="h-[17px] w-[24px]" />
                       <input type="file" style={{ display: "none" }} />
                     </label>
@@ -158,9 +158,18 @@ const Quiz = () => {
                 <span className="text-[#616161] text-[13px] font-[600] leading-noraml">
                   Question Image
                 </span>
-                <span className="text-[#B6B6B6] text-[12px] leading-normal font-[500]">
-                  Optional
-                </span>
+                {item.image ? (
+                  <button
+                    className="text-[#B6B6B6] text-[12px] leading-normal font-[500]"
+                    onClick={() => hadleRemoveImage(item)}
+                  >
+                    <ClearRounded />
+                  </button>
+                ) : (
+                  <span className="text-[#B6B6B6] text-[12px] leading-normal font-[500]">
+                    Optional
+                  </span>
+                )}
               </div>
               {item.image ? (
                 <section className="w-full flex justify-center">
@@ -177,7 +186,7 @@ const Quiz = () => {
                   >
                     <input {...getInputProps()} />
                     <img src={cloud} className="mb-1" />
-                    <p className="text-[#B5B5B5] text-[12px] font-[400] leading-4 text-center w-[163px]">
+                    <p className="text-[#B5B5B5] text-[12px] font-[400] leading-4 text-center w-[163px] mb-2">
                       Drag and drop your image here Or{" "}
                       <label className="text-[#1B8BCE] hover:underline cursor-pointer">
                         <input
@@ -193,6 +202,11 @@ const Quiz = () => {
                         </span>
                       </label>
                     </p>
+                    {err ? (
+                      <div className="text-red-500 text-[12px] font-[400] leading-4 text-center">
+                        Only JPG, PNG files are allowed
+                      </div>
+                    ) : null}
                   </div>
                 </section>
               )}
@@ -212,3 +226,9 @@ const Quiz = () => {
 };
 
 export default Quiz;
+
+/* {err ? (
+                      <div className="text-red-500 text-[10px] font-[400] leading-4 text-center">
+                        {err}
+                      </div>
+                    ) : null} */
