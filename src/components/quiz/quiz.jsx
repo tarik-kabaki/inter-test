@@ -124,7 +124,7 @@ const Quiz = () => {
                       )}
                     </button>
 
-                    <label className=" cursor-pointer">
+                    <label className=" cursor-pointer" title="upload image">
                       <img src={cloud} className="h-[17px] w-[24px]" />
                       <input type="file" style={{ display: "none" }} />
                     </label>
@@ -145,7 +145,7 @@ const Quiz = () => {
                       )}
                     </button>
 
-                    <label className=" cursor-pointer">
+                    <label className=" cursor-pointer" title="upload image">
                       <img src={cloud} className="h-[17px] w-[24px]" />
                       <input type="file" style={{ display: "none" }} />
                     </label>

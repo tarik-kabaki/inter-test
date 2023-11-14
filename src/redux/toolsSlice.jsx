@@ -56,6 +56,20 @@ export const toolsSlice = createSlice({
         image: figure,
         name: "Attemps",
       },
+      {
+        id: 7,
+        val: 10,
+        type: null,
+        image: figure,
+        name: "Exemple",
+      },
+      {
+        id: 8,
+        val: 10,
+        type: null,
+        image: figure,
+        name: "Exemple",
+      },
     ],
 
     navLogs: [
