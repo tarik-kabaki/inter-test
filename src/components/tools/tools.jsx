@@ -15,8 +15,11 @@ import Switch from "@mui/material/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { toolDec, toolInc } from "../../redux/toolsSlice";
 import { Scrollbar } from "swiper/modules";
+import SwiperCore from "swiper/core";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
+
+SwiperCore.use([Scrollbar]);
 
 const Tools = () => {
   const PinkSwitch = styled(Switch)(({ theme }) => ({
@@ -46,15 +49,15 @@ const Tools = () => {
   const swiperRef = useRef();
 
   return (
-    <section className="w-full flex justify-center">
-      <div className="w-[80%] flex items-center gap-3">
+    <section className="containers w-full flex justify-center">
+      <div className="main w-[80%] flex items-center gap-3">
         <button onClick={() => swiperRef.current?.slidePrev()}>
           <img src={left} />
         </button>
         <Swiper
           slidesPerView={6}
           spaceBetween={1}
-          scrollbar={true}
+          scrollbar={{ draggable: true }}
           pagination={{
             clickable: true,
           }}
@@ -89,7 +92,7 @@ const Tools = () => {
           onBeforeInit={(swiper) => {
             swiperRef.current = swiper;
           }}
-          modules={[Scrollbar, Navigation]}
+          modules={[Navigation]}
           className="mySwiper mb-5"
         >
           {toolsArray.map((item) => (
