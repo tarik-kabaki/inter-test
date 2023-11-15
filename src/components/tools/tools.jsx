@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toolDec, toolInc } from "../../redux/toolsSlice";
 import { Scrollbar } from "swiper/modules";
 import SwiperCore from "swiper/core";
+import Tooltip from "@mui/material/Tooltip";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 
@@ -98,7 +99,12 @@ const Tools = () => {
           {toolsArray.map((item) => (
             <SwiperSlide className="mt-5">
               <div className="w-[178px] h-[158px] rounded-md bg-[#FFF] shadow-md p-2">
-                <img src={info} className="mb-1 w-[16px] h-[16px]" />
+                <Tooltip title={item.info}>
+                  <img
+                    src={info}
+                    className="mb-1 w-[16px] h-[16px] cursor-pointer"
+                  />
+                </Tooltip>
                 <div className="flex justify-center">
                   <section className="w-[153px] h-[110px] flex items-center flex-col">
                     <img src={item.image} className="w-[32px] h-[35px] mb-2" />

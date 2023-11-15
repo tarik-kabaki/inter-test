@@ -19,8 +19,7 @@ const Catg = () => {
   const [depart, setDepart] = React.useState();
   const [func, setFunc] = React.useState();
   const [assing, setAssing] = React.useState();
-  const [trainigns, setTrainigns] = React.useState(null);
-
+  const [trainigns, setTrainigns] = React.useState("Working at height");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -28,15 +27,6 @@ const Catg = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleChange = (event) => {
-    setValid(event.target.value);
-    setTopic(event.target.value);
-    setCategory(event.target.value);
-    setAssing(event.target.value);
-    setDepart(event.target.value);
-    setFunc(event.target.value);
   };
 
   const handleTrainigns = (event) => {
@@ -60,7 +50,7 @@ const Catg = () => {
               <Select
                 defaultValue={10}
                 value={category}
-                onChange={handleChange}
+                onChange={(e) => setCategory(e.target.value)}
                 style={{
                   fontSize: "12px",
                   color: "#313131",
@@ -104,7 +94,7 @@ const Catg = () => {
               <Select
                 defaultValue={10}
                 value={topic}
-                onChange={handleChange}
+                onChange={(e) => setTopic(e.target.value)}
                 style={{
                   fontSize: "12px",
                   color: "#313131",
@@ -144,7 +134,7 @@ const Catg = () => {
               <Select
                 defaultValue={10}
                 value={valid}
-                onChange={handleChange}
+                onChange={(e) => setValid(e.target.value)}
                 style={{
                   fontSize: "12px",
                   color: "#313131",
@@ -251,7 +241,7 @@ const Catg = () => {
               <Select
                 defaultValue={10}
                 value={assing}
-                onChange={handleChange}
+                onChange={(e) => setAssing(e.target.value)}
                 style={{
                   fontSize: "12px",
                   color: "#313131",
@@ -302,7 +292,7 @@ const Catg = () => {
                 <Select
                   defaultValue={10}
                   value={depart}
-                  onChange={handleChange}
+                  onChange={(e) => setDepart(e.target.value)}
                   style={{
                     fontSize: "12px",
                     color: "#313131",
@@ -344,7 +334,7 @@ const Catg = () => {
                 <Select
                   defaultValue={10}
                   value={func}
-                  onChange={handleChange}
+                  onChange={(e) => setFunc(e.target.value)}
                   style={{
                     fontSize: "12px",
                     color: "#313131",
@@ -394,17 +384,3 @@ const Catg = () => {
 };
 
 export default Catg;
-
-/*     <div className="w-full h-[36px] flex items-center  justify-between p-2 rounded-md bg-[#FFFFFF] border-[#DCDCDC] border-[1px] ">
-              <span className="flex items-center gap-2">
-                <span className="text-[#313131] mid:text-[12px] mobile:text-[12px] xsmall:text-[9px] font-[600] leading-normal">
-                  Working at height
-                </span>
-              </span>
-              <section className="flex items-center gap-3 ">
-                <img src={blueicon} />
-                <button>
-                  <img src={Vector} />
-                </button>
-              </section>
-            </div> */

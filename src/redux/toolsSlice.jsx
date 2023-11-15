@@ -20,6 +20,7 @@ export const toolsSlice = createSlice({
         type: null,
         image: figure,
         name: "Exemple",
+        info: "Exemple Information",
       },
       {
         id: 2,
@@ -27,6 +28,7 @@ export const toolsSlice = createSlice({
         type: null,
         image: figure,
         name: "Exemple",
+        info: "Exemple Information",
       },
       {
         id: 3,
@@ -34,6 +36,7 @@ export const toolsSlice = createSlice({
         type: null,
         image: dice,
         name: "Random questions",
+        info: "Random questions Information",
       },
       {
         id: 4,
@@ -41,6 +44,7 @@ export const toolsSlice = createSlice({
         type: "s",
         image: time,
         name: "Time per question",
+        info: "Time per question Information",
       },
       {
         id: 5,
@@ -48,6 +52,7 @@ export const toolsSlice = createSlice({
         type: "%",
         image: done,
         name: "Passing score",
+        info: "Passing score Information",
       },
       {
         id: 6,
@@ -55,6 +60,7 @@ export const toolsSlice = createSlice({
         type: "check",
         image: wbecam,
         name: "Webcam validation",
+        info: "Webcam Information",
       },
       {
         id: 7,
@@ -62,6 +68,7 @@ export const toolsSlice = createSlice({
         type: "min",
         image: zone,
         name: "Time Expected",
+        info: "Time Expected Information",
       },
       {
         id: 8,
@@ -69,6 +76,7 @@ export const toolsSlice = createSlice({
         type: null,
         image: figure,
         name: "Attemps",
+        info: "Attemps Information",
       },
     ],
 
